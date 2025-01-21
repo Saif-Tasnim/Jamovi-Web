@@ -1,0 +1,19 @@
+/* styles.css */
+.react-resizable-panels-container {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    width: 100%;
+  }
+  
+  .react-resizable-panel {
+    flex: 1;
+    overflow: auto;
+  }
+  
+  .react-resizable-panel-resize-handle {
+    width: 10px;
+    cursor: col-resize;
+    background-color: #ddd;
+  }
+  

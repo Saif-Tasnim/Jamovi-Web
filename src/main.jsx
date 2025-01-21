@@ -7,6 +7,7 @@ import LogInPage from "./pages/auth/LogInPage";
 import DashboardLayout from "./layout/DashboardLayout";
 import Project from "./pages/dashboard/pages/Project";
 import NewProject from "./pages/dashboard/pages/NewProject/NewProject";
+import PanelLayout from "./layout/PanelLayout";
 
 createRoot(document.getElementById("root")).render(
   <BrowserRouter>
@@ -19,6 +20,9 @@ createRoot(document.getElementById("root")).render(
       <Route path="dashboard" element={<DashboardLayout />}>
         <Route path="projects" element={<Project />} />
         <Route path="new-project" element={<NewProject />} />
+      </Route>
+
+      <Route path="grid-sheet" element={<PanelLayout />}>
       </Route>
     </Routes>
   </BrowserRouter>

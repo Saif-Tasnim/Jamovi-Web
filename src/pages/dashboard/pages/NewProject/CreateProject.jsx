@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router";
 
 export default function CreateProject() {
   const {
@@ -9,10 +10,16 @@ export default function CreateProject() {
   } = useForm();
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const navigate = useNavigate();
 
   const onSubmit = async (data) => {
     setIsSubmitted(true);
     setErrorMessage("");
+
+    setTimeout(() => {
+      alert("Project Successfully Uploaded");
+      navigate("/grid-sheet");
+    }, 2000);
 
     // FormData object
     const formData = new FormData();
@@ -43,30 +50,47 @@ export default function CreateProject() {
   };
 
   return (
-    <>
+    <div className="w-2/3">
       <form onSubmit={handleSubmit(onSubmit)}>
         {/* Project Title */}
-        <input
-          type="text"
-          {...register("project_title", { required: true, maxLength: 255 })}
-          placeholder="e.g. Market Analysis"
-          className="p-3 w-full block my-2 border border-purple-500 rounded-md outline-0"
-          aria-invalid={errors.project_title ? "true" : "false"}
-        />
-        {errors.project_title?.type === "required" && (
-          <p role="alert" className="text-red-500 pl-4 font-medium">
-            Title is required
-          </p>
-        )}
+        <div className="flex gap-10 items-center">
+          <div>
+            <input
+              type="text"
+              {...register("project_title", { required: true, maxLength: 255 })}
+              placeholder="e.g. Market Analysis"
+              className="p-3 w-full block my-2 border border-purple-500 rounded-md outline-0"
+              aria-invalid={errors.project_title ? "true" : "false"}
+            />
+            {errors.project_title?.type === "required" && (
+              <p role="alert" className="text-red-500 pl-4 font-medium">
+                Title is required
+              </p>
+            )}
+          </div>
+          <div>
+            <input
+              type="text"
+              {...register("project_info", { required: true, maxLength: 255 })}
+              placeholder=""
+              className="p-3 w-full block my-2 border border-purple-500 rounded-md outline-0"
+              aria-invalid={errors.project_info ? "true" : "false"}
+            />
+            {errors.project_info?.type === "required" && (
+              <p role="alert" className="text-red-500 pl-4 font-medium">
+                Project Info is required
+              </p>
+            )}
+          </div>
+        </div>
 
         <br />
 
         {/* Project Description */}
-        <input
-          type="text"
+        <textarea
           {...register("project_description", { maxLength: 255 })}
           placeholder="e.g. Market Analysis with this dataset"
-          className="p-3 w-full block my-2 border border-purple-500 rounded-md outline-0"
+          className="p-3 h-20 w-full block my-2 border border-purple-500 rounded-md outline-0"
           aria-invalid={errors.project_description ? "true" : "false"}
         />
         {errors.project_description?.type === "maxLength" && (
@@ -88,11 +112,13 @@ export default function CreateProject() {
               value[0]?.name.endsWith(".xlsx"),
           })}
           placeholder="Upload .csv files"
-          className="p-3 w-full block my-2 border border-purple-500 rounded-md outline-0 cursor-pointer"
+          className="p-3 w-1/3 mx-auto block my-2 border border-purple-500 rounded-md outline-0 cursor-pointer"
           aria-invalid={errors.project_file ? "true" : "false"}
         />
         {errors.project_file?.type === "required" && (
-          <p role="alert">Project file is required</p>
+          <p role="alert" className="text-red-500 pl-4 font-medium">
+            Project file is required
+          </p>
         )}
         {errors.project_file?.type === "validate" && (
           <p role="alert" className="text-red-500 pl-4 font-medium">
@@ -110,6 +136,6 @@ export default function CreateProject() {
           </button>
         </div>
       </form>
-    </>
+    </div>
   );
 }

@@ -2,7 +2,7 @@ import { Link } from "react-router";
 
 const SideBar = () => {
   return (
-    <div className="h-screen w-64 bg-blue-400 bg-fixed">
+    <div className="h-full w-72 bg-blue-400 fixed">
       <h1 className="text-xl px-6 py-12 font-medium">JAMOVI WEB Version</h1>
 
       <div className="flex flex-col gap-6 pl-11 mt-11">

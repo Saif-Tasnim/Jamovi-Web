@@ -3,7 +3,7 @@ import SideBar from "../pages/dashboard/SideBar";
 
 const DashboardLayout = () => {
     return (
-        <div className="flex">
+        <div className="flex h-screen overflow-x-hidden">
             <SideBar />
             <Outlet />
         </div>

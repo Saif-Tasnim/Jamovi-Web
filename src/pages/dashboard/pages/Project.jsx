@@ -6,8 +6,8 @@ const Project = () => {
   const allProjects = [];
 
   return (
-    <div className="w-full">
-      <div className="flex items-center mx-10 my-6">
+    <div className="w-full h-screen overflow-hidden">
+      <div className="flex items-center ml-80 py-8">
         <h1 className="text-xl font-semibold text-gray-700">All Projects</h1>
         {allProjects.length !== 0 ? <button>New Project</button> : ""}
       </div>
