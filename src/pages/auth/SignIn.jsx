@@ -23,7 +23,7 @@ const SignIn = () => {
 
       // if user successfully logged in, then redirect will following routes
 
-        navigate("/dashboard");
+      navigate("/dashboard");
     } catch (error) {
       setErrorMessage(error?.message);
       console.log(errorMessage);
@@ -32,7 +32,7 @@ const SignIn = () => {
     }
   };
   return (
-    <>
+    <div>
       <form onSubmit={handleSubmit(onSubmit)}>
         {/* user email */}
         <input
@@ -93,7 +93,7 @@ const SignIn = () => {
           </button>
         </div>
       </form>
-    </>
+    </div>
   );
 };
 

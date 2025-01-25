@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { LuImagePlus } from "react-icons/lu";
 import { useNavigate } from "react-router";
 
 export default function CreateProject() {
@@ -18,7 +19,7 @@ export default function CreateProject() {
 
     setTimeout(() => {
       alert("Project Successfully Uploaded");
-      navigate("/grid-sheet");
+      navigate("/dashboard/projects");
     }, 2000);
 
     // FormData object
@@ -30,7 +31,6 @@ export default function CreateProject() {
       const response = await fetch("http://127.0.0.1:8000/project_create", {
         method: "POST",
         headers: {
-          //when the form includes files, it is encoded as multipart/form-data
           "Content-type": "application/multipart/form-data",
         },
         body: formData,
@@ -53,13 +53,13 @@ export default function CreateProject() {
     <div className="w-2/3">
       <form onSubmit={handleSubmit(onSubmit)}>
         {/* Project Title */}
-        <div className="flex gap-10 items-center">
-          <div>
+        <div className="flex gap-10 items-center w-full">
+          <div className="w-full">
             <input
               type="text"
               {...register("project_title", { required: true, maxLength: 255 })}
-              placeholder="e.g. Market Analysis"
-              className="p-3 w-full block my-2 border border-purple-500 rounded-md outline-0"
+              placeholder="Project Name"
+              className="p-3 w-full block my-2 border border-gray-700 rounded-md outline-0"
               aria-invalid={errors.project_title ? "true" : "false"}
             />
             {errors.project_title?.type === "required" && (
@@ -68,17 +68,17 @@ export default function CreateProject() {
               </p>
             )}
           </div>
-          <div>
+          <div className="w-full">
             <input
               type="text"
               {...register("project_info", { required: true, maxLength: 255 })}
-              placeholder=""
-              className="p-3 w-full block my-2 border border-purple-500 rounded-md outline-0"
+              placeholder="Project Type"
+              className="p-3 w-full block my-2 border border-gray-700 rounded-md outline-0"
               aria-invalid={errors.project_info ? "true" : "false"}
             />
             {errors.project_info?.type === "required" && (
               <p role="alert" className="text-red-500 pl-4 font-medium">
-                Project Info is required
+                Project Type is required
               </p>
             )}
           </div>
@@ -89,8 +89,8 @@ export default function CreateProject() {
         {/* Project Description */}
         <textarea
           {...register("project_description", { maxLength: 255 })}
-          placeholder="e.g. Market Analysis with this dataset"
-          className="p-3 h-20 w-full block my-2 border border-purple-500 rounded-md outline-0"
+          placeholder="Project Description"
+          className="p-3 h-20 w-full block my-2 border border-gray-700 rounded-md outline-0"
           aria-invalid={errors.project_description ? "true" : "false"}
         />
         {errors.project_description?.type === "maxLength" && (
@@ -102,29 +102,21 @@ export default function CreateProject() {
         <br />
 
         {/* Project File */}
-        <input
-          type="file"
-          accept=".csv,.xlsx"
-          {...register("project_file", {
-            required: true,
-            validate: (value) =>
-              value[0]?.name.endsWith(".csv") ||
-              value[0]?.name.endsWith(".xlsx"),
-          })}
-          placeholder="Upload .csv files"
-          className="p-3 w-1/3 mx-auto block my-2 border border-purple-500 rounded-md outline-0 cursor-pointer"
-          aria-invalid={errors.project_file ? "true" : "false"}
-        />
-        {errors.project_file?.type === "required" && (
-          <p role="alert" className="text-red-500 pl-4 font-medium">
-            Project file is required
-          </p>
-        )}
-        {errors.project_file?.type === "validate" && (
-          <p role="alert" className="text-red-500 pl-4 font-medium">
-            Only .csv and .xlsx files allowed
-          </p>
-        )}
+        <div className="mx-auto h-20 w-full flex flex-col gap-3 justify-center items-center border border-dotted border-gray-800 rounded-md cursor-pointer bg-white">
+          <label>
+            <div className="w-full h-full flex flex-col justify-center items-center gap-2 cursor-pointer">
+              <LuImagePlus />
+              <p>Upload Files</p>
+              <input
+                type="file"
+                name=""
+                id=""
+                accept=".csv,.xlxs"
+                className="w-0 h-0"
+              />
+            </div>
+          </label>
+        </div>
 
         <div className="flex justify-center mt-8">
           <button

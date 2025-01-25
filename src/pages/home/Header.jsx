@@ -2,9 +2,9 @@ import { Link } from "react-router";
 
 const Header = () => {
   return (
-    <header className="flex justify-around gap-6 items-center py-6 bg-blue-400 text-gray-800">
+    <header className="flex justify-around gap-6 items-center py-3 bg-gray-100 text-gray-800">
       <div>
-        <p className="text-center text-3xl">Jamovi</p>
+        <p className="text-center text-3xl libre-baskerville-bold">Rivulet</p>
       </div>
       <nav className="flex space-x-4">
         <Link to="/" className="hover:text-gray-800 hover:font-semibold">
@@ -20,11 +20,11 @@ const Header = () => {
           Work Flow
         </Link>
       </nav>
-      <div className="flex space-x-5 text-gray-200">
-        <button className="px-3 py-2 bg-gray-700 rounded-md hover:bg-gray-200 hover:text-black transition-all duration-300">
+      <div className="flex space-x-5">
+        <button className="px-4 py-2 border text-blue-500 border-blue-500 rounded-full hover:bg-blue-500 hover:text-gray-100 transition-all duration-300">
           <Link to="/sign-in">Log In</Link>
         </button>
-        <button className="px-3 py-2 bg-blue-700 rounded-md hover:bg-gray-200 hover:text-black transition-all duration-300">
+        <button className="px-4 py-2 text-gray-100 bg-blue-500 rounded-full hover:bg-gray-200 hover:text-black transition-all duration-300">
           <Link to="/sign-up">Get Started</Link>
         </button>
       </div>
